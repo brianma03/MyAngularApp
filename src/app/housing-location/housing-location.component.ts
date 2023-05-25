@@ -1,11 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Housinglocation } from '../housinglocation';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-housing-location',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+  ],
   // This template uses the property binding to bind the housingLocation.photo to the one in the src.
   // Interpolation was used to include the name, city, and state of the housingLocation property.
   template: `
@@ -13,8 +17,9 @@ import { Housinglocation } from '../housinglocation';
     <img class="listing-photo" [src]="housingLocation.photo" alt="Exterior photo of {{housingLocation.name}}">
     <h2 class="listing-heading">{{ housingLocation.name }}</h2>
     <p class="listing-location">{{ housingLocation.city}}, {{housingLocation.state }}</p>
+    <a [routerLink]="['/details', housingLocation.id]">Learn More</a>
   </section>
-  `,
+`,
   // The [----]="----" syntax is used to notify Angular that the assigned value should be treated as a property from the component class and not just a string value.
   styleUrls: ['./housing-location.component.css']
 })
