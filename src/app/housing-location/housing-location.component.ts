@@ -6,11 +6,11 @@ import { Housinglocation } from '../housinglocation';
   selector: 'app-housing-location',
   standalone: true,
   imports: [CommonModule],
+  // In this template we added the property binding to the <app-housing-location> tag
   template: `
-    <p>
-      housing-location works!
-    </p>
+    <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
   `,
+  // The [----]="----" syntax is used to notify Angular that the assigned value should be treated as a property from the component class and not just a string value.
   styleUrls: ['./housing-location.component.css']
 })
 export class HousingLocationComponent {
