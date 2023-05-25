@@ -1,35 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HousingLocationComponent } from '../housing-location/housing-location.component';
-import { Housinglocation } from '../housinglocation';
+import { Injectable } from '@angular/core';
+import { Housinglocation } from './housinglocation';
 
-@Component({
-  selector: 'app-home', // This statement uses the SELECTOR property that identifies this component 
-  //Notice: Component name is HOME. Hence, the selector identifier is called app-HOME.
-  standalone: true,     // Standalone is just a component that is not part of any Angular module.
-  imports: [
-    CommonModule,
-    HousingLocationComponent,
-  ],
-  // Below is a template which is simply a blueprint for a fragment of a user interface.
-  template: ` 
-  <section>
-    <form>
-      <input type="text" placeholder="Filter by city">
-      <button class="primary" type="button">Search</button>
-    </form>
-  </section>
-  <section class="results">
-  <app-housing-location *ngFor="let housingLocation of housingLocationList"
-  [housingLocation]="housingLocation"></app-housing-location>
-  </section>
-  `,
-  styleUrls: ['./home.component.css'] // This calls the css file corresponding to it to style the template.
+@Injectable({
+  providedIn: 'root'
 })
-export class HomeComponent {
-
-  // Format for creating an array of Housing Location component entries.
-    housingLocationList: Housinglocation[] = [
+export class HousingService {
+  housingLocationList: Housinglocation[] = [
     {
       id: 0,
       name: 'Acme Fresh Start Housing',
@@ -131,7 +107,15 @@ export class HomeComponent {
       laundry: true
     }
   ];
-}
 
-// This component was added using the following:
-// 'ng generate component Home --standalone --inline-template --skip-tests'
+  // This function returns the whole list of housing locations
+  getAllHousingLocations(): Housinglocation[] {
+    return this.housingLocationList;
+  }
+  // THis function returns a specific id of a housing location
+  getHousingLocationById(id: number): Housinglocation | undefined {
+    return this.housingLocationList.find(housingLocation => housingLocation.id === id);
+  }
+
+  constructor() { }
+}
