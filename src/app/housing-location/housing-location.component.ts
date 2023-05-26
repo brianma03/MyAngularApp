@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
     <a [routerLink]="['/details', housingLocation.id]">Learn More</a>
   </section>
 `,
+// Above in the template, the code contains a routerLink that will redirect to the info of the housing location.
   // The [----]="----" syntax is used to notify Angular that the assigned value should be treated as a property from the component class and not just a string value.
   styleUrls: ['./housing-location.component.css']
 })
